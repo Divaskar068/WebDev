@@ -1,0 +1,199 @@
+/* ────────────────────────────────────────────────
+   GameForge Catalogue – Starter CSS (1-week version)
+   Students should improve / customise freely
+───────────────────────────────────────────────── */
+
+:root {
+  --bg:        #f9fafb;
+  --text:      #111827;
+  --card-bg:   #ffffff;
+  --border:    #d1d5db;
+  --accent:    #3b82f6;
+  --highlight: #fef3c7;
+  --muted:     #6b7280;
+}
+
+body.dark {
+  --bg:        #111827;
+  --text:      #f3f4f6;
+  --card-bg:   #1f2937;
+  --border:    #374151;
+  --highlight: #78350f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 1.5rem;
+  transition: background 0.4s, color 0.4s;
+}
+
+header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+input, select, button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+button {
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button#reset-cart {
+  background: #ef4444;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.15s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: #1f2937;
+}
+
+.card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+}
+
+.card-content h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  color: var(--muted);
+  margin: 0.2rem 0;
+}
+
+.price {
+  font-weight: bold;
+  color: #10b981;
+  margin: 0.4rem 0;
+}
+
+.add-cart-btn {
+  margin-top: auto;
+  width: 100%;
+}
+
+.add-cart-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.highlight {
+  background-color: var(--highlight) !important;
+}
+
+.status {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  background: #e5e7eb;
+  color: #374151;
+  display: none;
+}
+
+body.dark .status {
+  background: #374151;
+  color: #d1d5db;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Basic responsiveness */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}

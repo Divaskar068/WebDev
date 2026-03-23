@@ -1,0 +1,22 @@
+AI Usage Declaration - Assignment 1
+
+Tool used:
+- GitHub Copilot CLI (AI assistant in terminal/IDE workflow)
+
+How AI was used:
+- Reviewed assignment requirements and compared them against starter code.
+- Suggested and generated vanilla JavaScript logic for:
+  * loading JSON data
+  * rendering cards dynamically
+  * category filtering
+  * search highlighting
+  * cart count updates and reset behavior
+  * dark mode toggle integration checks
+- Suggested CSS improvements for accessibility (focus-visible states) and responsive behavior checks.
+- Helped draft readme run instructions and feature notes.
+
+Verification performed by student:
+- Manually reviewed all generated code.
+- Ensured no prohibited external frameworks/libraries were introduced.
+- Ran local syntax checks and browser-based functional testing.
+- Adjusted behavior to strictly match assignment specification.

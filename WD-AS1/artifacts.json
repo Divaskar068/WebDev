@@ -1,0 +1,143 @@
+[
+  {
+    "id": 1,
+    "name": "Neon Cyber Dragon Skin",
+    "creator": "PixelForge",
+    "type": "Skin",
+    "releaseYear": 2024,
+    "rating": 4.7,
+    "price": 8.99,
+    "compatibleGames": ["Minecraft", "Roblox"],
+    "category": "Skin",
+    "thumbnail": "images/neon_dragon.png"
+  },
+  {
+    "id": 2,
+    "name": "Gravity Shift Plugin",
+    "creator": "CodeNinja42",
+    "type": "Plugin",
+    "releaseYear": 2023,
+    "rating": 4.2,
+    "price": 12.50,
+    "compatibleGames": ["Minecraft"],
+    "category": "Plugin",
+    "thumbnail": "images/gravity_shift.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Medieval Knight Armor Set",
+    "creator": "CraftyQueen",
+    "type": "Skin",
+    "releaseYear": 2025,
+    "rating": 4.9,
+    "price": 6.99,
+    "compatibleGames": ["Hytale", "Minecraft"],
+    "category": "Skin",
+    "thumbnail": "images/knight_armor.png"
+  },
+  {
+    "id": 4,
+    "name": "EconomyPlus Module",
+    "creator": "EcoDevPro",
+    "type": "Plugin",
+    "releaseYear": 2024,
+    "rating": null,
+    "price": 19.99,
+    "compatibleGames": ["Minecraft"],
+    "category": "Plugin",
+    "thumbnail": "images/economy_plus.png"
+  },
+  {
+    "id": 5,
+    "name": "Pixel Pet Companion Pack",
+    "creator": "TinyToons",
+    "type": "Item Data",
+    "releaseYear": 2022,
+    "rating": 4.5,
+    "price": 0.99,
+    "compatibleGames": ["Roblox"],
+    "category": "Item Data",
+    "thumbnail": "images/pixel_pet.png"
+  },
+  {
+    "id": 6,
+    "name": "Steampunk Airship Furniture",
+    "creator": "GearWorks",
+    "type": "Item Data",
+    "releaseYear": 2023,
+    "price": 7.49,
+    "compatibleGames": [],
+    "category": "",
+    "thumbnail": "images/steampunk_airship.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Ultra Realistic Water Physics",
+    "creator": "AquaByte",
+    "type": "Plugin",
+    "releaseYear": 2026,
+    "rating": 4.6,
+    "price": 999.99,
+    "compatibleGames": ["Minecraft", "Hytale"],
+    "category": "Plugin",
+    "thumbnail": ""
+  },
+  {
+    "id": 8,
+    "name": "Anime Waifu Skin Collection",
+    "creator": "KawaiiStudio",
+    "type": "Skin",
+    "releaseYear": 2025,
+    "rating": 4.3,
+    "price": 9.99,
+    "compatibleGames": ["Roblox"],
+    "category": "Skin",
+    "thumbnail": "images/anime_waifu.png"
+  },
+  {
+    "id": 9,
+    "name": "Magic Wand Toolset",
+    "creator": "SpellCrafter",
+    "type": "Item Data",
+    "releaseYear": 2024,
+    "rating": 3.9,
+    "price": 5.49,
+    "category": "Item Data"
+  },
+  {
+    "id": 10,
+    "name": "Advanced Parkour Movement Pack",
+    "creator": "JumpMasterX",
+    "type": "Plugin",
+    "releaseYear": 2021,
+    "rating": 4.8,
+    "price": 11.25,
+    "compatibleGames": ["Minecraft"],
+    "category": "Plugin",
+    "thumbnail": "images/parkour_pack.png"
+  },
+  {
+    "id": 11,
+    "name": "Cyberpunk Neon City Build Kit",
+    "creator": "NeonGrid",
+    "type": "Item Data",
+    "releaseYear": 2025,
+    "rating": 4.4,
+    "price": 13.99,
+    "compatibleGames": ["Roblox", "Hytale"],
+    "category": "Item Data",
+    "thumbnail": "images/cyber_city_kit.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Mythical Creature Morphs",
+    "creator": "MythosDev",
+    "type": "Skin",
+    "releaseYear": 2024,
+    "rating": 4.7,
+    "price": 10.49,
+    "compatibleGames": ["Hytale"],
+    "category": "Skin",
+    "thumbnail": "images/mythical_morphs.png"
+  }
+]

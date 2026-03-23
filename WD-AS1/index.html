@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameForge Catalogue – Digital Game Assets</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-row">
+      <h1>GameForge Catalogue</h1>
+      <button id="theme-toggle">Dark Mode</button>
+    </div>
+
+    <div class="controls">
+      <div class="search-group">
+        <label for="search-input" class="sr-only">Search by name</label>
+        <input 
+          type="search" 
+          id="search-input" 
+          placeholder="Search by name..."
+          aria-label="Search items by name"
+        >
+      </div>
+
+      <div class="filter-group">
+        <label for="category-filter" class="sr-only">Filter by category</label>
+        <select id="category-filter" aria-label="Filter by category">
+          <option value="all">All Categories</option>
+          <!-- Categories will be populated by JavaScript -->
+        </select>
+      </div>
+
+      <div class="cart-info">
+        <span id="cart-count">Cart: 0 items</span>
+        <button id="reset-cart">Reset Cart</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="status-message" class="status" aria-live="polite"></div>
+
+    <section id="catalogue" class="grid-container">
+      <!-- Item cards will be inserted here dynamically -->
+    </section>
+  </main>
+
+  <footer>
+    <p>GameForge Marketplace – COMP4347/5347 Assignment1 Prototype © 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
