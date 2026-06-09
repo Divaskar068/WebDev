@@ -31,8 +31,30 @@ Image download starts during parsing.
 DOMContentLoaded can happen before image finishes. {Browser can reserve <img> space and paint page before image fully downloads}<- so does not block rendering
 load waits until image finishes.
 
-now what if external JS and CSS present as link
-CSS can block rendering because browser needs CSSOM for render tree.
-JS can block parsing unless async/defer is used.
-Downloads may happen in parallel, but they start at different times depending on when parser discovers them. <- can view this in network waterfall 
+now what if external JS and CSS present as link? 
+- CSS can block rendering because browser needs CSSOM for render tree.
+- JS can block parsing unless async/defer is used.
+- Downloads may happen in parallel, but they start at different times depending on when parser discovers them. <- can view this in network waterfall 
+After load browser can still ask for extre resources -> cause they dont affect the page as much and dont matter in the tree
 
+
+MEASURING PERFORMANCE :
+
+CRITICAL RESOURCE:
+HTML = 5KB
+CSS = 4KB
+JS = 10KB   -> these 3 essential for rendering
+NOTE: An image is usually not critical because browser can calculate its layout space and paint before the image finishes loading.
+
+CRITICAL PATH LENGTH:
+Number of round trips needed to fetch all critical resources.
+Example: HTML downloads -> JS, then JS downloads -> another JS.
+
+Critical path length = 3 round trips.
+If resources download in parallel, only the longest dependency chain counts.
+
+CRITICAL SIZE:
+Total size of critical resources needed before rendering.
+Critical bytes = 19KB from 1st example.
+
+in this image we see that 3 resources, 3 request/response pairs, but only 2 round trips because only 2 idle stages since those CSS files download in parallel.
