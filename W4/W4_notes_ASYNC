@@ -39,6 +39,7 @@ now what if external JS and CSS present as link?
 - Downloads may happen in parallel, but they start at different times depending on when parser discovers them. <- can view this in network waterfall 
 After load browser can still ask for extre resources -> cause they dont affect the page as much and dont matter in the tree
 
+Basically to say if it is render blocking ? ASK do i need this to render the website? if yes, then render blocking else non 
 
 MEASURING PERFORMANCE :
 
@@ -112,6 +113,25 @@ await - meaning wait for fn to finish
 promise - result will come later 
 
 
+------------------------------------------------------------------------------------------------------
+
+
+SKELETON
+A skeleton screen is a temporary layout shown before full content loads.
+only improves percieved performance no actual decrease in loading time 
+
+PROGRESIVE RENDERING
+loading the most important parts first. eg. Load header and main content first.
+Load comments, ads, or sidebars later.
+
+improves perceived speed and usability.
+
+MINIFICATION
+Reduce size of large JS/CSS
+rm whitespace, long var names etc -> so debugging near impossible -> use only for deployments not dev
+Tree shaking = removing unused code from JS/CSS bundles.
+
+Smaller file -> fewer critical bytes -> faster downloads ->  fast load
 
 
 
