@@ -1,0 +1,155 @@
+
+
+ISSUES Without MVC :
+One big JS file
+  All routes and logic are in one file. Hard to read and maintain.
+Large apps have many route methods
+  Example: login routes, product routes, admin routes, survey routes. They should be grouped separately.
+Need modular controllers and route mappings
+  Route decides URL.
+  Controller handles what to do.
+Need proper data sharing
+  Use Variable scopes: 
+    Application scope variable = data shared across whole app, like products and surveyresults.
+    Request scope variable = data only for one request, like req.body.gender
+    Session scope =server-side memory for one client across multiple requests. check below 
+No separated model yet
+  Data logic is not separated.
+  In MVC, model should handle data/database.
+
+
+GOOD STRUCTURE
+
+controllers/ = functions that handle user requests
+models/ = data/database logic
+routes/ = URL mapping
+views/ = templates like Pug/EJS
+public/ = static files like CSS/images/client JS
+server.js = app entry point
+
+-------------------------------------
+typical MVC Structure:
+app/
+  controllers/
+  models/
+  routes/
+  views/
+
+config/
+  config.js
+  express.js
+
+public/
+  css/
+  img/
+  js/
+
+server.js
+package.json
+-------------------------------------
+
+Java onliginally had namespace issue :
+node.js uses commonJS modules which fixes those with 3 parts :
+
+Require() - used to import another module
+exports - exposes a method/object from a file , which other files can read
+module - represents the current module 
+use case:
+calling require (like var hello = require('./hello'))
+returns the module.exports methods in hello.js file 
+
+code explaination :
+
+products = req.app.locals.products
+means get products from express app 
+app.local stores vars across the whole app <- Application scope
+
+Mapping to URL
+
+router.get('/', controller.showForm)
+If user sends GET request to /, run showForm.
+
+router.post('/survey', controller.showResult)
+If user sends POST request to /survey, run showResult.
+
+router = Express.Router() <- middleware
+uesful? yes as groups routers so improves modularity HOW? check below 
+In server.js:
+  var survey = require('../routes/survey.server.routes')
+Then:
+  app.use('/survey', survey)
+This means add prefix to all routes inside survey.server.routes.js -> mounted under /survey.
+If router has:  router.get('/') ;       Final URL becomes:  GET /survey
+
+---------------------------------------------------------------------------------------------------------------
+
+SESSION:
+HTTPS - stateless -> server does not automatically rem prev req
+sol: store session data 
+
+server creates session object and ID - if valid req from client 
+client gets back ID and stores usually in cookies 
+
+server objects store all data about perticular client (mostly stays in memory but can be persistent to database (better in case server crashes))
+
+
+COOKIES:
+stores only session ID
+(browser identifies them by {name:, value:, domain:, path:})
+
+Domain match = suffix match: eg-
+web.cs.usyd.edu.au
+        usyd.edu.au   ✅ suffix
+
+Path match = Prefix match eg-
+/~comp5347/doc/page.html
+/~comp5347/doc/           ✅ prefix
+
+SESSION
+Eg. logged in user stays logged in across many page 
+(implememnted using module: express-session)
+      req.session stores session scope data -> persists across mutiple requests from same browser 
+Eg2 Requirement : A user should not vote more than once within a certain time using the same browser.
+Solution:
+Store user’s previous vote in session.
+Logic:
+User submits vote. Check if req.session.vote already exists.
+If yes, ignore new vote. If no, save vote in session and update results.
+
+---------------------------------------------------------------------------------------------------------------
+NO SQL 
+new gen DB that has no strict relational tables 
+
+Document storage - Mongo DB
+Key Value storage 
+Column based storage
+Graph DB
+
+
+MongoDB
+
+A document in the same collection does not need identical structure. For eg from below one might have product other might not, called Flexible Schema 
+
+Stores data like a document in JSON:-
+{
+  customer: { name: "John", address: "Sydney" },
+  product: { code: "123", quantity: 2 }
+}
+
+
+SQL vs MongoDB
+SQL table → MongoDB collection
+SQL row → MongoDB document
+SQL column → MongoDB field
+SQL primary key → MongoDB _id
+SQL join → MongoDB embedding/referencing, or $lookup
+
+MongoDB stores as BSON
+BSON looks like JSON, but inside it stores values in binary and supports special types like ObjectId, Date, and Int32
+easy for machines to read
+
+In SQL, storing multiple emails in one column is awkward. You usually need another table.
+In MongoDB, you can put multiple values in an array field.
+Important:
+MongoDB naturally supports nested and multi-value data.
+
