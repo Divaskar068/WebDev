@@ -19,6 +19,8 @@ FLOW:
 2. run LAYOUT on render tree -> to get the overall geomentry 
 3. PAINT the pixels on the screen as a website for user 
 
+
+------------------------------------------------------------------------------------------------------
 DEVTOOLS
 
 DOMCONENTLOADED - At whatever time the DOM tree finishes building 
@@ -40,21 +42,79 @@ After load browser can still ask for extre resources -> cause they dont affect t
 
 MEASURING PERFORMANCE :
 
-CRITICAL RESOURCE:
+1. CRITICAL RESOURCE:
 HTML = 5KB
 CSS = 4KB
 JS = 10KB   -> these 3 essential for rendering
 NOTE: An image is usually not critical because browser can calculate its layout space and paint before the image finishes loading.
 
-CRITICAL PATH LENGTH:
+2. CRITICAL PATH LENGTH:
 Number of round trips needed to fetch all critical resources.
 Example: HTML downloads -> JS, then JS downloads -> another JS.
 
 Critical path length = 3 round trips.
 If resources download in parallel, only the longest dependency chain counts.
 
-CRITICAL SIZE:
+3. CRITICAL SIZE:
 Total size of critical resources needed before rendering.
 Critical bytes = 19KB from 1st example.
 
+![Network waterfall example](netwpic1.png)
 in this image we see that 3 resources, 3 request/response pairs, but only 2 round trips because only 2 idle stages since those CSS files download in parallel.
+
+Reduce 1 2 and 3 for Critical Rendering Path optimization
+HOW?
+
+in 1 reduce by making it load sooner -> make scripts async/defer (check below)
+in 2 trigger downloads in parallel instead of one by one i.e batch in one set of requests 
+in 3 minify JS/CSS by compressing 
+
+------------------------------------------------------------------------------------------------------
+
+ASYNCHRONOUS JS
+
+<script src="app.js" async></script>
+Script Downloads in BG while DOM parsing 
+run as soon as finished downloading 
+If mutiple async present -> oreder is not guarentee so dont  use async if script depends on DOM order or another script. eg analytics, ads
+ In JS you can use async if it does not depend on the DOM order
+
+NOTE : Async does not always mean true parallel execution.
+JavaScript may still run on one thread, switching between the 2.
+
+DEFERRED 
+the script downloads in BG but only excute after DOM parsing finishes. They Run in order
+Good for DOM manipulation as they run only when DOM is ready
+Speeds up Critical rendering path 
+
+A defer script runs after HTML is parsed, before DOMContentLoaded
+
+
+PROMISE:
+JS object to handle async code - basically a cleaner way to handle something that finishes later
+promise callbacks: Resolve = "success"
+                   Reject = "Failed"
+
+
+
+
+async function asyncFunction() {
+  console.log("Start");
+  await new Promise(resolve => setTimeout(resolve, 1000));
+}
+
+await asyncFunction();
+console.log("Something else");
+
+
+async - means this function always returns a Promise
+await - meaning wait for fn to finish
+promise - result will come later 
+
+
+
+
+
+
+
+
