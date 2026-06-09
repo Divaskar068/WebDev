@@ -1,0 +1,38 @@
+WEEK4:
+OM - Object model 
+like tree with node attributes & leafs 
+
+HTML → DOM (from HTML file we build the tree with like body head etc)
+every element becomes a node {even <style> but not the rules inside it }
+<link> or <img> start same time as DOM is being created when found in the HTML file
+
+CSS → CSSOM (from CSS we build tree with all color size font width etc)
+tree of CSS rules 
+cascading -> rules go down from parent to child
+
+JavaScript → can change DOM or CSSOM (using code we can change ant rule and perform functions on it)
+
+
+FLOW:
+1 . DOM+CSSOM -combine these 2 together and get RENDER TREE
+  Render tree -> contains only visible nodes so if anything has [ display: none ] will be only present in DOM/CSSOM
+2. run LAYOUT on render tree -> to get the overall geomentry 
+3. PAINT the pixels on the screen as a website for user 
+
+DEVTOOLS
+
+DOMCONENTLOADED - At whatever time the DOM tree finishes building 
+LOAD - at whatever time the whole page loads including the CSS JS imgs links 
+
+Flow:
+Browser first downloads HTML.
+While parsing HTML, it sees image tag.
+Image download starts during parsing.
+DOMContentLoaded can happen before image finishes. {Browser can reserve <img> space and paint page before image fully downloads}<- so does not block rendering
+load waits until image finishes.
+
+now what if external JS and CSS present as link
+CSS can block rendering because browser needs CSSOM for render tree.
+JS can block parsing unless async/defer is used.
+Downloads may happen in parallel, but they start at different times depending on when parser discovers them. <- can view this in network waterfall 
+
