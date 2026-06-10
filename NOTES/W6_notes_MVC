@@ -148,8 +148,56 @@ MongoDB stores as BSON
 BSON looks like JSON, but inside it stores values in binary and supports special types like ObjectId, Date, and Int32
 easy for machines to read
 
-In SQL, storing multiple emails in one column is awkward. You usually need another table.
-In MongoDB, you can put multiple values in an array field.
-Important:
 MongoDB naturally supports nested and multi-value data.
+  In SQL, storing multiple emails in one column is awkward. You usually need another table.
+  In MongoDB, you can put multiple values in an array field.
+
+MongoDB supports embedded documents
+  In SQL, address might be separate columns or another table.
+  In MongoDB, address can be stored inside the user document.
+
+easy retrieve user and address but not best when complex querying with address
+
+QUERY:
+E.g 1 :- 
+db.users.find(
+  { age: { $gt: 18 } }, <- greater than 18 $ls - less than 
+  { name: 1, address: 1 } <- second {} says what to return. Return only name & address, by default _id is returned unless excluded
+).limit(5)
+
+In SQL:
+SELECT _id, name, address
+FROM users
+WHERE age > 18
+LIMIT 5
+
+E.g 2 :- 
+db.user.find({}, { name: 1, age: 1, _id: 0 })
+
+SQL: 
+SELECT name, age FROM user
+
+
+Modifier : E.g sort({age: 1}) 1 Ascending -1 desecending
+
+QUERYING ARRAY
+Dot notation can access array positions.
+Eg: db.user.find({ "emails.0": "joe@gmail.com" }) <- returns first email in array
+
+QUERYING EMBEDDED DOC
+same dot, eg if whole address
+db.users.find({
+address: {
+  number: 1
+  name: "str"
+  suburb: "king"
+  zip:2006
+ }
+})
+
+if only one field : db.users.find({ "address.suburb": "king" })
+
+
+
+
 
