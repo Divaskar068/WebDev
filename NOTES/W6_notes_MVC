@@ -198,6 +198,108 @@ address: {
 if only one field : db.users.find({ "address.suburb": "king" })
 
 
+---------------------------------------------------------------------------------------------------------------
+Part 5 WRITE QUERIES
+same way as reading we do with find 
+
+
+INSERT: Eg implemented arrays , you can also do embbeded same way as before 
+db.user.insert({
+  _id: 12345, <- like primary key
+  name: "Joe Smith",
+  emails: ["joe@gmail.com", "joe@ibm.com"],
+  age: 30
+})
+NOTE: The {} is a new document 
+
+UPDATE: Eg
+db.users.update(
+  { age: { $gt: 18 } },
+  { $set: { status: "A" } }, <- $set operator
+  { multi: true } <- update multiple matching document 
+)
+NOTE: First {} = which document to find
+      Second {} = what change to make
+
+SQL:
+UPDATE users
+SET status = 'A'
+WHERE age > 18
+
+BASIC OPERATOR:
+ $set = update/add feild
+ $unset = remove field
+ Eg: 
+db.user.update(
+  { _id: 54321 },
+  { $unset: { email: 1 } } <- 1 does not matter can be "" also 
+)
+
+ARRAY OPERATOR:
+$push
+ add item to array 
+
+$pushall <- deprecated use $push with $each
+ add all items to array 
+ Eg:
+db.users.update(
+ {_id = 123 },
+ { $pushall {emails: ["...gmail.com", "....com"]} }
+)
+Alternative Eg:
+db.users.update(
+  { _id: 123 },
+  { $push: { emails: { $each: ["a@gmail.com", "b@gmail.com"] } } }
+)
+
+$pull
+Remove from array 
+
+DELETE OPERATOR :
+Eg:
+db.user.remove({ _id: 12345 })
+NOTE: !! remove() with no criteria deletes everything in the collection.
+
+---------------------------------------------------------------------------------------------------------------
+
+AGGREGATION
+- Grouping, summing, couting, sorting <- use these because they run on the database engine not app code
+MongoDB aggregation options:
+1 Aggregation Pipeline - standard analytics 
+2 MapReduce - slower but allows custom JS fns
+
+1 It is a step-by-step process that has mutiple stages -> they start with an array []
+like: db.collection.aggregate([
+  {stage1:{expression}}
+  .....
+])
+common stages :
+$match <- Use this early to reduce number of docs to process 
+Filter documents. Similar to SQL WHERE.
+$group <- inside this we use accumulators like $sum
+Group documents. Similar to SQL GROUP BY.
+$sort <- if useing use this also eary before changing data
+Sort documents. Similar to SQL ORDER BY.
+Eg:
+db.orders.aggregate([
+  { $match: { status: "A" } },
+  { $group: { _id: "$cust_id", total: { $sum: "$amount" } } }
+])
+
+SQL:
+SELECT cust_id AS _id, SUM(amount) AS total
+FROM orders
+WHERE status = "A"
+GROUP BY cust_id
+
+JOIN like behavious can be done using $lookup
+
+---------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
