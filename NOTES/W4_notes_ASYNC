@@ -10,7 +10,7 @@ CSS → CSSOM (from CSS we build tree with all color size font width etc)
 tree of CSS rules 
 cascading -> rules go down from parent to child
 
-JavaScript → can change DOM or CSSOM (using code we can change ant rule and perform functions on it)
+JavaScript → can change DOM or CSSOM (using code we can change any rule and perform functions on it)
 
 
 FLOW:
@@ -36,10 +36,10 @@ load waits until image finishes.
 now what if external JS and CSS present as link? 
 - CSS can block rendering because browser needs CSSOM for render tree.
 - JS can block parsing unless async/defer is used.
-- Downloads may happen in parallel, but they start at different times depending on when parser discovers them. <- can view this in network waterfall 
-After load browser can still ask for extre resources -> cause they dont affect the page as much and dont matter in the tree
+- Downloads may happen in parallel, but they start at different times depending on when parser discovers them. <- can view this in network waterfall eg below
+After load, browser can still ask for extra resources -> cause they don't affect the page as much and dont matter in the tree
 
-Basically to say if it is render blocking ? ASK do i need this to render the website? if yes, then render blocking else non 
+Render Blocking, how to say? ASK do i need this to render the website? if yes, then render blocking else non 
 
 MEASURING PERFORMANCE :
 
@@ -77,8 +77,9 @@ ASYNCHRONOUS JS
 <script src="app.js" async></script>
 Script Downloads in BG while DOM parsing 
 run as soon as finished downloading 
-If mutiple async present -> oreder is not guarentee so dont  use async if script depends on DOM order or another script. eg analytics, ads
- In JS you can use async if it does not depend on the DOM order
+If mutiple async present -> oreder is not guarentee so dont  use async if script depends on DOM order or another script. 
+usefull for non essential features, eg analytics, ads
+In JS you can use async if it does not depend on the DOM order
 
 NOTE : Async does not always mean true parallel execution.
 JavaScript may still run on one thread, switching between the 2.
@@ -91,6 +92,7 @@ Speeds up Critical rendering path
 A defer script runs after HTML is parsed, before DOMContentLoaded
 
 
+The primary object JS uses for asynchronous code is the Promise object.
 PROMISE:
 JS object to handle async code - basically a cleaner way to handle something that finishes later
 promise callbacks: Resolve = "success"
@@ -118,17 +120,19 @@ promise - result will come later
 
 SKELETON
 A skeleton screen is a temporary layout shown before full content loads.
-only improves percieved performance no actual decrease in loading time 
+only improves percieved performance no actual decrease in loading time
+Good for SPAs - Single page Apps where you scroll a lot like linkendIn
 
 PROGRESIVE RENDERING
-loading the most important parts first. eg. Load header and main content first.
+By deferring the criticality of different parts of the skeleton, i.e loading the most important parts first. 
+eg. Load header and main content first.
 Load comments, ads, or sidebars later.
 
 improves perceived speed and usability.
 
 MINIFICATION
 Reduce size of large JS/CSS
-rm whitespace, long var names etc -> so debugging near impossible -> use only for deployments not dev
+rm whitespace, new line, comment, long var names etc & simpplify code with shortcuts and forms -> so debugging near impossible -> use only for deployments not dev
 Tree shaking = removing unused code from JS/CSS bundles.
 
 Smaller file -> fewer critical bytes -> faster downloads ->  fast load
